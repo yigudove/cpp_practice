@@ -6,6 +6,27 @@
 // 的指针类型，它存储的是一个整型变量的内存地址。 当 *
 // 用作解引用操作符时，它表示访问指针指向的内存空间。例如，如果我们执行语句 int x = *p;，那么会将 p
 // 指向的内存空间中的值赋给变量 x。
-int ival = 42;
-int* p   = &ival;
-int* p2  = p;
+#include <iostream>
+using namespace std;
+int main()
+{
+    int ival = 42;
+    int* p   = &ival;
+    int* p2  = p;
+
+    p = 0; // 等效于p = nullptr;
+    // 此时 if(p) 为 false
+    p = nullptr;
+
+    // 指针的三种情况：空指针，指向对象的地址，指向对象的下一地址
+    // 当我们说指针指向对象的下一个地址时，我们是指指针存储的地址值加上了对象所占用的内存大小
+    // 指针指向对象的下一地址的情况
+    int arr[3] = {1, 2, 3};
+    int* p     = arr;
+    cout << *p << endl; // 输出 1
+    p++; // 由于整型变量在内存中占用 4 个字节，所以 p++ 实际上是将指针 p 存储的地址值加上了 4
+    cout << *p << endl; // 输出 2
+
+    // void*
+    return 0;
+}
